@@ -47,4 +47,8 @@ def array_phone_formatter(arr):
 
 
 if __name__ == '__main__':
-    print(string_phone_formatter(''.join(sys.argv[1:])))
+    try:
+        phone = string_phone_formatter(''.join(sys.argv[1:]))
+        print(phone)
+    except ValueError as e:
+        print(e)
