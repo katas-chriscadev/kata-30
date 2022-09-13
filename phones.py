@@ -1,26 +1,49 @@
 import sys
 
 __phone_words_numbers_map__ = {
-    "0": " ",
-    "1": "",
-    "2": "abc",
-    "3": "def",
-    "4": "ghi",
-    "5": "jkl",
-    "6": "mno",
-    "7": "pqrs",
-    "8": "tuv",
-    "9": "wxyz",
+    " ": "0",
+    "a": "2",
+    "b": "2",
+    "c": "2",
+    "d": "3",
+    "e": "3",
+    "f": "3",
+    "g": "4",
+    "h": "4",
+    "i": "4",
+    "j": "5",
+    "k": "5",
+    "l": "5",
+    "m": "6",
+    "n": "6",
+    "o": "6",
+    "p": "7",
+    "q": "7",
+    "r": "7",
+    "s": "7",
+    "t": "8",
+    "u": "8",
+    "v": "8",
+    "w": "9",
+    "x": "9",
+    "y": "9",
+    "z": "9",
 }
 
 
+def array_elements_to_string(array: list):
+    return [str(x) for x in array]
+
+
 def words_to_number(words: str):
-    numbers = ""
-    for letter in words:
-        for number, letters in __phone_words_numbers_map__.items():
-            if number == letter or letter.lower() in letters:
-                numbers += number
-    return numbers
+    numbers = []
+    for letter in words.lower():
+        number = __phone_words_numbers_map__.get(letter, None)
+        if number is not None:
+            numbers.append(number)
+        else:
+            numbers.append(letter)
+    return ''.join(numbers)
 
 
 def phone_format(raw_phone: str):
@@ -39,10 +62,10 @@ def string_phone_formatter(value):
     return phone_format(phone)
 
 
-def array_phone_formatter(arr):
-    if not isinstance(arr, list):
+def array_phone_formatter(array: list):
+    if not isinstance(array, list):
         raise ValueError('array_phone_formatter must be a list')
-    letters = [str(x) for x in arr]
+    letters = array_elements_to_string(array)
     return string_phone_formatter(''.join(letters))
 
 
