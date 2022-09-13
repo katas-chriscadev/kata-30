@@ -1,5 +1,3 @@
-import re
-import string
 import sys
 
 __phone_words_numbers_map__ = {
